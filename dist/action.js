@@ -13,9 +13,9 @@ var MyAction = function () {
         // create a google action server
         this.agent = new _googleActionsServer.ActionServer();
 
-        this.agent.setGreetings(['Hello, my name is Wassim (aka Maneki Nekko on the Internet). \n            Congratulations! This is your first action on Google Actions and Google Home. \n            Tell me somthing and I will repeat it']);
+        this.agent.setGreetings(['Hello, my name is Wassim (aka Maneki Nekko on the Internet).\n            Congratulations! This is your first action on Google Actions and Google Home.\n            Tell me somthing and I will repeat it.']);
 
-        this.agent.setConversationMessages(['Tell me something else', 'Try something else', 'Try again', 'Come on, try again']);
+        this.agent.setConversationMessages(['Tell me something else.', 'Try something else.', 'Try again.', 'Come on, try again.']);
 
         this.assistant = null;
     }
@@ -60,13 +60,14 @@ var MyAction = function () {
             this.agent.welcome(this.welcomeIntent.bind(this));
             this.agent.intent(_googleActionsServer.ActionServer.intent.action.TEXT, this.textIntent.bind(this));
             this.agent.intent('my.deeplink.intent', this.dateIntent.bind(this));
-            this.agent.listen();
+            return this.agent.listen();
         }
     }]);
 
     return MyAction;
 }();
+
 // instantiate
 
 
-new MyAction().listen();
+module.exports = new MyAction().listen();
